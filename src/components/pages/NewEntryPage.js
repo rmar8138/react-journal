@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import EntryForm from "./../EntryForm";
 
 export default class NewEntryPage extends Component {
   state = {
@@ -20,13 +21,19 @@ export default class NewEntryPage extends Component {
 
   render() {
     const { errorMessage, category } = this.state;
+    const { onEntryFormSubmit, history } = this.props;
+
     return (
       <>
         {errorMessage}
         {category && (
           <>
             <h1>New {category} entry</h1>
-
+            <EntryForm
+              onEntryFormSubmit={onEntryFormSubmit}
+              category={category}
+              history={history}
+            />
             <div>
               <Link to="/category">
                 <button>Back</button>

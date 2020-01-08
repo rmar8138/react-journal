@@ -6,7 +6,12 @@ import NewEntryPage from "./pages/NewEntryPage";
 
 export default class App extends Component {
   state = {
-    categories: ["personal", "travel", "dating"]
+    categories: ["personal", "travel", "dating"],
+    entries: []
+  };
+
+  onEntryFormSubmit = entry => {
+    this.setState(state => ({ entries: [...state.entries, entry] }));
   };
 
   render() {
@@ -29,7 +34,11 @@ export default class App extends Component {
               exact
               path="/entry/new/:id"
               render={props => (
-                <NewEntryPage {...props} categories={categories} />
+                <NewEntryPage
+                  {...props}
+                  categories={categories}
+                  onEntryFormSubmit={this.onEntryFormSubmit}
+                />
               )}
             />
           </>
